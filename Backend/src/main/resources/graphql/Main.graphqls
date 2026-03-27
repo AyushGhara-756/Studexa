@@ -1,0 +1,23 @@
+type Query {
+    student(id: ID): Student
+    assignments(studentId: ID): [Assignment]
+}
+
+type Student {
+    id: ID
+    user: User
+    assignments: [Assignment]
+}
+
+type User {
+    id: ID
+    name: String
+    email: String
+    role: String
+}
+
+type Assignment {
+    id: ID
+    name: String
+    description: String
+}

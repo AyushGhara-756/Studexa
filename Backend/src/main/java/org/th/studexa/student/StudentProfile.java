@@ -1,10 +1,12 @@
 package org.th.studexa.student;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.th.studexa.authentication.User;
 import org.th.studexa.assigment.Assignment;
+import org.th.studexa.authentication.User;
 
 import java.util.List;
 
@@ -12,18 +14,18 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "student")
+@NoArgsConstructor
+@AllArgsConstructor
 public class StudentProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "id")
+    @OneToMany(mappedBy = "student")
     private List<Assignment> assignments;
 //    private List<Subject> subjects;
-
-
 }

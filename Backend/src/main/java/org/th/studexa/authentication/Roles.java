@@ -1,5 +1,7 @@
 package org.th.studexa.authentication;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public enum Roles {
     Student("student"),
     Teacher("teacher"),
@@ -11,6 +13,7 @@ public enum Roles {
         this.role = role;
     }
 
+    @JsonCreator
     public static Roles fromValue(String value){
         for (Roles roles: Roles.values()){
             if (roles.role.equalsIgnoreCase(value)){

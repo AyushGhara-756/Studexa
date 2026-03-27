@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.th.studexa.authentication.User;
+import org.th.studexa.student.StudentProfile;
 
 @Getter
 @Setter
@@ -21,11 +22,7 @@ public class Assignment {
     private String description;
 
     @ManyToOne
-    @JoinTable(
-            name = "student",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
-    private User user;
+    @JoinColumn(name = "student_id")
+    private StudentProfile student;
 
 }
