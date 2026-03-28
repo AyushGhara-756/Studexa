@@ -1,6 +1,10 @@
 type Query {
     student(id: ID): Student
-    assignments(studentId: ID): [Assignment]
+    getAssignments(studentId: ID): [Assignment]
+}
+
+type Mutation{
+    addAssignment(name: String!, description: String, studentId: ID!): Boolean
 }
 
 type Student {

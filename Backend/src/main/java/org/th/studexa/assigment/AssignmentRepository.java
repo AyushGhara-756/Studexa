@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
     List<Assignment> findByStudent(StudentProfile student);
+    boolean existsByStudent(StudentProfile student);
+
+    boolean existsByName(String name);
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.th.studexa.assigment.Assignment;
 import org.th.studexa.authentication.UserService;
+import org.th.studexa.exceptions.NotFound;
 
 import java.util.List;
 
@@ -17,13 +18,13 @@ public class StudentService {
 
     public StudentProfile getProfile(long id) {
         List<StudentProfile> profile = studentRepository.findByUser(userService.getUser(id));
-        if (profile.isEmpty()) {throw new IllegalArgumentException("No student found");}
+        if (profile.isEmpty()) {throw new NotFound("Student");}
         return profile.getFirst();
     }
 
     public List<Assignment> getAssignments(long studentId) {
         StudentProfile profile = studentRepository.findById(studentId).orElse(null);
-        if (profile == null) {throw new IllegalArgumentException("No student found");}
+        if (profile == null) {throw new NotFound("Student");}
         return profile.getAssignments();
     }
 
