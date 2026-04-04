@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.th.studexa.student.StudentProfile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,17 +12,17 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @Service
-public class S3Service {
+public class FileService {
 
-    @Value("${files.upload-directory}")
-    private String uploadDir;
+//    @Value("${files.upload-directory}")
+    private String uploadDir = "D:\\Lesson Code\\Projects\\Studexa\\Backend\\src\\main\\resources\\assignments";
     FileValidator validator = new FileValidator();
 
     public String save(MultipartFile file, StudentProfile profile) throws IOException {
         if (!file.isEmpty()) {
             validator.validate(file);
-            String fileName = file.getOriginalFilename();
-            Path path = Paths.get(uploadDir + "\"" + profile.getName());
+            String fileName = file.getOriginalFilename().replaceAll("[\"\\r\\n]", "").trim();
+            Path path = Paths.get(uploadDir + "\\" + profile.getName());
 
             if (!Files.exists(path)) {
                 Files.createDirectories(path);
@@ -36,4 +35,5 @@ public class S3Service {
 
         throw new IllegalArgumentException("File is empty");
     }
+
 }

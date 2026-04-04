@@ -1,14 +1,14 @@
 package org.th.studexa.s3;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.th.studexa.exceptions.FIleSizeException;
 
 import java.util.List;
 
-@Component
 public class FileValidator {
 
     private final List<String> allowed_types = List.of(
+            "multipart/form-data",
             "application/pdf",
             "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -23,7 +23,7 @@ public class FileValidator {
             throw new IllegalArgumentException("File is empty");
         }
         if (file.getSize() > MAX_SIZE){
-            throw new IllegalArgumentException("File is too large");
+            throw new FIleSizeException(file.getName());
         }
         if (!allowed_types.contains(file.getContentType())) {
             throw new IllegalArgumentException("File type not supported");

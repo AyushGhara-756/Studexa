@@ -1,15 +1,16 @@
 package org.th.studexa.authentication;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin("http://localhost:3000")
 public class AuthController {
 
     @Autowired
@@ -27,6 +28,15 @@ public class AuthController {
         UsersResponseDto response = userService.login(request);
         if (response == null) {return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();}
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session!=null) {
+            session.invalidate();
+        }
+        return ResponseEntity.ok(null);
     }
 
 }

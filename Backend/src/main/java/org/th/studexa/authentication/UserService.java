@@ -20,10 +20,11 @@ public class UserService {
             User saved =  userRepo.save(user);
             if (saved.getRole().equals(Roles.Student)){
                 StudentProfile profile = new StudentProfile();
+                profile.setName(saved.getName());
                 profile.setUser(saved);
                 studentRepo.save(profile);
             }
-            return new UsersResponseDto(saved.getId(),saved.getRole());
+            return new UsersResponseDto(saved.getId(),saved.getRole(),user.getName());
         }
         throw new DuplicateException("User","email"); // if user already exists
     }
@@ -36,7 +37,7 @@ public class UserService {
         if (!user.getPassword().equals(request.password())){
             throw new IllegalArgumentException("Password Incorrect");
         }
-        return new UsersResponseDto(user.getId(),user.getRole());
+        return new UsersResponseDto(user.getId(),user.getRole(),user.getName());
     }
 
     public User getUser(long id){

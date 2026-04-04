@@ -1,0 +1,30 @@
+0. Recreate the dashboard as shown in the dashboard 2.jpeg
+
+1. Generate the pages for the tabs shown (with some dummy content) in the dashboard 2.jpeg
+
+2. make the home page using the STUDEXA.pdf file in prompt folder
+
+3. Remake the navbar following constarints:
+
+a. the design will like the one showing (the navabar with search bar) in the dashoboard 2.jpeg at images folder
+b. If the user is not signed in (check from redux store) it should show only a login button which nab=vigates to signin page
+c. add an option of switching dark-light theme.
+d. at the STUDEXA logo, just add an image tag, i will add the image
+
+4. in dashboard When clicked on Today's schedule open Academics Planner, when clicked on progress overview open progress page, and the rest same too
+
+5. genrate the profile page too which shows the username, email, his profession (student),
+
+6. in the progress, also a button for upload assignment, which opens the upload page which takes the assignment and send the request to server for addding the assignemnt. there would be two request for upload, first is the graphql request which send the details of the assignemnts as 
+type Mutation{
+    addAssignment(name: String!, description: String, studentId: ID!): Boolean
+}
+second would be an http request with file and student id
+before sending the request, fetch the student id using an graphql request as 
+query{
+    student(id:1){
+        id,
+        name
+    }
+}
+and get the student id to sent to the server
