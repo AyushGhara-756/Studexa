@@ -4,7 +4,7 @@
 
 ---
 
-### ## Key Features
+### Key Features
 
 *   **Real-Time Academic Dashboard:** Comprehensive visualization of grades, test scores, and overall performance trends.
 *   **Attendance Tracking:** Instant updates on daily attendance and lecture-wise participation.
@@ -14,7 +14,7 @@
 
 ---
 
-### ## Tech Stack
+### Tech Stack
 
 *   **Frontend:** React / Next.js (Responsive and intuitive UI)
 *   **Backend:** Java with Spring Boot (Robust and scalable microservices)
@@ -24,7 +24,7 @@
 
 ---
 
-### ## Getting Started
+### Getting Started
 
 #### **Prerequisites**
 *   Java 17 or higher
@@ -61,7 +61,7 @@
 
 ---
 
-### ## Future Roadmap
+### Future Roadmap
 
 *   **AI Integration:** Predictive analytics to forecast student performance based on historical data.
 *   **Mobile Application:** Native Android and iOS versions for better accessibility.
@@ -69,6 +69,6 @@
 
 ---
 
-### ## License
+### License
 This project is licensed under the MIT License - see the `LICENSE` file for details.
 ```
